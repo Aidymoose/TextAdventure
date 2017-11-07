@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: fb6d98b9a8b53a34b87e79f6356f3f46
+timeCreated: 1510002053
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Walkway Black
+  fontNames:
+  - Walkway Black
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
