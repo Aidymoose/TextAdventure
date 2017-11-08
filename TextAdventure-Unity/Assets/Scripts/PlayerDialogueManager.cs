@@ -7,20 +7,21 @@ public class PlayerDialogueManager : DialogueManager
 {
 	GameObject _sendButton;
 	PlayerInputController _playerInputController;
-	AiDialogueManager _aIDialogueManager;
+	NPCDialogueManager _nPCDialogueManager;
 	string _resetTyping = " ";
+	public GameObject playerConversationContainer;
 
 	void Start () 
 	{
 		Initialise ();
 	}
 
-	void Initialise ()
+	protected override void Initialise ()
 	{
 		base.Initialise ();
 		_playerInputController = GameObject.FindObjectOfType<PlayerInputController>();
 		currentPlayerString = dialogueContainer.PlayerTextSequence[currentPlayerArrayPosition];
-		_aIDialogueManager = GameObject.FindObjectOfType<AiDialogueManager>();
+		_nPCDialogueManager = GameObject.FindObjectOfType<NPCDialogueManager>();
 		_sendButton = GameObject.FindGameObjectWithTag ("Send");
 		_playerInputController.SetCurrentMessage (currentPlayerString);
 	}
@@ -32,16 +33,17 @@ public class PlayerDialogueManager : DialogueManager
 
 	public void PlayerConfirmsSendMessage ()
 	{
-		AddMessageToConversation (currentPlayerString);
+		GameObject thisPlayerMessageContainer = Instantiate (PlayerMessageContainer, playerConversationContainer.transform);
+		AddMessageToConversation (currentPlayerString, thisPlayerMessageContainer);
 	}
 
-	protected override void AddMessageToConversation (string currentString)
+	protected override void AddMessageToConversation (string currentString, GameObject thisMessageContainer)
 	{
-		base.AddMessageToConversation (currentString);
+		base.AddMessageToConversation (currentString, thisMessageContainer);
 		_playerInputController.ResetTypeToScreen (_resetTyping);
 		_sendButton.GetComponent<KeyFunctionality>().EndGlow ();
 		FindNextConversationString ();
-		_aIDialogueManager.UpdateAIText ();
+		_nPCDialogueManager.UpdateAIText ();
 	}		
 
 	protected override void FindNextConversationString ()

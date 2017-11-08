@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class KeyFunctionality : MonoBehaviour 
 {
-
 	public char key;
 	Color _newcolour = Color.red;
 	Color _defaultColour = Color.white;

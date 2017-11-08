@@ -36,7 +36,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4696228136558080}
-  - component: {fileID: 114448101948178060}
   m_Layer: 0
   m_Name: NPC Message Container
   m_TagString: Untagged
@@ -67,8 +66,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1448309412809332}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -114.8, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 45, y: -15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224854634455781032}
@@ -109,17 +108,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: New TextNew TextNew TextNew Text
---- !u!114 &114448101948178060
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1448309412809332}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30fc6ca8f5ed17f469bb299bde550ff8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114643205951204294
 MonoBehaviour:
   m_ObjectHideFlags: 1

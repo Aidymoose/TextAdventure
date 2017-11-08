@@ -16,7 +16,7 @@ public class PlayerInputController : MonoBehaviour
 	PlayerDialogueManager _playerDialogueManager;
 	Text _text;
 
-	void Start () 
+	void Awake () 
 	{
 		Initialise ();
 	}
@@ -35,7 +35,8 @@ public class PlayerInputController : MonoBehaviour
 		if (key == _currentPlayerMessageCharacters[_playerMessageCharacterIndex])
 		{
 			UpdateCurrentPlayerMessageText ();
-			FindNextPlayerMessageCharacter (button);
+			button.GetComponent<KeyFunctionality>().EndGlow();
+			FindNextPlayerMessageCharacter ();
 		}
 	}
 
@@ -44,18 +45,17 @@ public class PlayerInputController : MonoBehaviour
 		_text.text = _playerCurrentMessage.Substring(0,_playerMessageCharacterIndex + 1);
 	}
 
-	private void FindNextPlayerMessageCharacter (GameObject button)
+	private void FindNextPlayerMessageCharacter ()
 	{
 		_playerMessageCharacterIndex += 1;
 		if (_playerMessageCharacterIndex == _currentPlayerMessageCharactersLength)
 			{
 				_playerDialogueManager.AllPlayerMessageCharactersTyped ();
-				button.GetComponent<KeyFunctionality>().EndGlow();
 			}
 		else
 		{
 			char next = _currentPlayerMessageCharacters[_playerMessageCharacterIndex];
-			button.GetComponent<KeyFunctionality>().EndGlow();
+
 			_buttonGlow.FindButtonToGlow(next);
 		}
 	}
@@ -71,8 +71,7 @@ public class PlayerInputController : MonoBehaviour
 		_playerCurrentMessage = newString;
 		_currentPlayerMessageCharacters = _playerCurrentMessage.ToCharArray ();
 		_currentPlayerMessageCharactersLength = _currentPlayerMessageCharacters.Length;
-		char firstLetter = _currentPlayerMessageCharacters[0];
-		_buttonGlow.FindButtonToGlow (firstLetter);
-
+		char first = _currentPlayerMessageCharacters[0];
+		_buttonGlow.FindButtonToGlow (first);
 	}
 }

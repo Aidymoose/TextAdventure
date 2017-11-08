@@ -5,27 +5,29 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour 
 {
-
+	public GameObject nPCMessageContainer;
+	public GameObject PlayerMessageContainer;
 	protected Text text;
 	protected DialogueContainer dialogueContainer;
 	protected int currentAIArrayPosition = 0;
 	protected int currentPlayerArrayPosition = 0;
 	protected string currentPlayerString;
 	protected string currentAIString;
+	protected Transform nPCConversationTransform;
 
-	void Awake ()
+	void Start ()
 	{
 		Initialise ();
 	}
 
-	protected void Initialise ()
+	protected virtual void Initialise ()
 	{
 		dialogueContainer = GameObject.FindObjectOfType<DialogueContainer>();
-		text = GetComponentInChildren<Text>();
 	}
 
-	protected virtual void AddMessageToConversation (string currentString)
+	protected virtual void AddMessageToConversation (string currentString, GameObject currentMessageContainer)
 	{
+		text = currentMessageContainer.GetComponentInChildren<Text>();
 		text.text = currentString;
 	}	
 

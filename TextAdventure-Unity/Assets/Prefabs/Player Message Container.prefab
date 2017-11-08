@@ -36,7 +36,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4682883974660836}
-  - component: {fileID: 114696404828663928}
   m_Layer: 0
   m_Name: Player Message Container
   m_TagString: Untagged
@@ -68,7 +67,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1669485707896180}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 49.4, y: -58.5, z: 0}
+  m_LocalPosition: {x: -26, y: -40, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224731748826279882}
@@ -103,17 +102,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114696404828663928
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1669485707896180}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0c90eb40340b6d4cbcfe136dc0f3bad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114817828275604762
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -146,7 +134,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New TextNew TextNew TextNew Text
+  m_Text: 
 --- !u!222 &222154454235662376
 CanvasRenderer:
   m_ObjectHideFlags: 1
