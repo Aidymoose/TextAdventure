@@ -10,6 +10,7 @@ public class PlayerDialogueManager : DialogueManager
 	NPCDialogueManager _nPCDialogueManager;
 	string _resetTyping = " ";
 	public GameObject playerConversationContainer;
+	List<GameObject> _playerMessageList;
 
 	void Start () 
 	{
@@ -20,9 +21,10 @@ public class PlayerDialogueManager : DialogueManager
 	{
 		base.Initialise ();
 		_playerInputController = GameObject.FindObjectOfType<PlayerInputController>();
-		currentPlayerString = dialogueContainer.PlayerTextSequence[currentPlayerArrayPosition];
+		currentPlayerString = dialogueContainer.PlayerTextSequence[currentPlayerArrayIndex];
 		_nPCDialogueManager = GameObject.FindObjectOfType<NPCDialogueManager>();
 		_sendButton = GameObject.FindGameObjectWithTag ("Send");
+		_playerMessageList = new List<GameObject>();
 		_playerInputController.SetCurrentMessage (currentPlayerString);
 	}
 
@@ -34,12 +36,12 @@ public class PlayerDialogueManager : DialogueManager
 	public void PlayerConfirmsSendMessage ()
 	{
 		GameObject thisPlayerMessageContainer = Instantiate (PlayerMessageContainer, playerConversationContainer.transform);
-		AddMessageToConversation (currentPlayerString, thisPlayerMessageContainer);
+		AddMessageToConversation (currentPlayerString, thisPlayerMessageContainer ,_playerMessageList);
 	}
 
-	protected override void AddMessageToConversation (string currentString, GameObject thisMessageContainer)
+	protected override void AddMessageToConversation (string currentString, GameObject thisMessageContainer,  List<GameObject> messageList)
 	{
-		base.AddMessageToConversation (currentString, thisMessageContainer);
+		base.AddMessageToConversation (currentString, thisMessageContainer, _playerMessageList);
 		_playerInputController.ResetTypeToScreen (_resetTyping);
 		_sendButton.GetComponent<KeyFunctionality>().EndGlow ();
 		FindNextConversationString ();
@@ -48,8 +50,8 @@ public class PlayerDialogueManager : DialogueManager
 
 	protected override void FindNextConversationString ()
 	{
-		currentPlayerArrayPosition +=1;
-		currentPlayerString = dialogueContainer.PlayerTextSequence[currentPlayerArrayPosition];
+		currentPlayerArrayIndex +=1;
+		currentPlayerString = dialogueContainer.PlayerTextSequence[currentPlayerArrayIndex];
 		_playerInputController.SetCurrentMessage(currentPlayerString);
 	}
 }

@@ -9,8 +9,8 @@ public class DialogueManager : MonoBehaviour
 	public GameObject PlayerMessageContainer;
 	protected Text text;
 	protected DialogueContainer dialogueContainer;
-	protected int currentAIArrayPosition = 0;
-	protected int currentPlayerArrayPosition = 0;
+	protected int currentAIArrayIndex = 0;
+	protected int currentPlayerArrayIndex = 0;
 	protected string currentPlayerString;
 	protected string currentAIString;
 	protected Transform nPCConversationTransform;
@@ -25,10 +25,11 @@ public class DialogueManager : MonoBehaviour
 		dialogueContainer = GameObject.FindObjectOfType<DialogueContainer>();
 	}
 
-	protected virtual void AddMessageToConversation (string currentString, GameObject currentMessageContainer)
+	protected virtual void AddMessageToConversation (string currentString, GameObject currentMessageContainer, List<GameObject> messageList)
 	{
 		text = currentMessageContainer.GetComponentInChildren<Text>();
 		text.text = currentString;
+		messageList.Add(currentMessageContainer);
 	}	
 
 	protected virtual void FindNextConversationString ()

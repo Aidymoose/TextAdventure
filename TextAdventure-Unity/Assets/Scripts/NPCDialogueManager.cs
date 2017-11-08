@@ -6,6 +6,7 @@ public class NPCDialogueManager : DialogueManager
 {
 	string currentAIstring;
 	public GameObject nPCConversationContainer;
+	public List<GameObject> nPCMessageList = new List <GameObject>();
 	
 	void Start () 
 	{
@@ -15,29 +16,30 @@ public class NPCDialogueManager : DialogueManager
 	protected override void Initialise ()
 	{
 		base.Initialise ();
-		currentAIString = dialogueContainer.AITextSequence[currentAIArrayPosition];
+		currentAIString = dialogueContainer.AITextSequence[currentAIArrayIndex];
 		GameObject thisNPCMessageContainer = Instantiate (nPCMessageContainer, nPCConversationContainer.transform);
 		print (currentAIString);
-		AddMessageToConversation (currentAIString, thisNPCMessageContainer);
+		AddMessageToConversation (currentAIString, thisNPCMessageContainer, nPCMessageList);
 	}
 
-	protected override void AddMessageToConversation (string currentString, GameObject thisMessageContainer)
+	protected override void AddMessageToConversation (string currentString, GameObject thisMessageContainer,  List<GameObject> messageList)
 	{
-		base.AddMessageToConversation (currentString, thisMessageContainer);
+		base.AddMessageToConversation (currentString, thisMessageContainer, nPCMessageList);
 	}
 
 	protected override void FindNextConversationString ()
 	{
-		currentAIArrayPosition +=1;
-		currentAIString = dialogueContainer.AITextSequence[currentAIArrayPosition];
-		GameObject thisMessageContainer = Instantiate (nPCMessageContainer);
-		AddMessageToConversation (currentAIString, thisMessageContainer);
+		currentAIArrayIndex +=1;
+		currentAIString = dialogueContainer.AITextSequence[currentAIArrayIndex];
+		GameObject thisMessageContainer = Instantiate (nPCMessageContainer, nPCConversationContainer.transform);
+		AddMessageToConversation (currentAIString, thisMessageContainer, nPCMessageList);
 	}
 
 	public void UpdateAIText ()
 	{
 		FindNextConversationString ();
 	}
+
 
 
 }
