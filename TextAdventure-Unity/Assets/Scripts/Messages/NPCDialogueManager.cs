@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NPCDialogueManager : DialogueManager 
 {
@@ -8,6 +9,9 @@ public class NPCDialogueManager : DialogueManager
 	public GameObject nPCConversationContainer;
 	public GameObject thisNPCMessageContainer;
 	public List<GameObject> nPCMessageList = new List <GameObject>();
+	public Sprite smallMessageSprite;
+	public Sprite mediumMessageSprite;
+	public Sprite largeMessageSprite;
 	PlayerDialogueManager playerDialogueManager;
 	
 	void Start () 
@@ -28,6 +32,7 @@ public class NPCDialogueManager : DialogueManager
 	protected override void AddMessageToConversation (string currentString, GameObject newMessageContainer,  List<GameObject> messageList, GameObject previousMessageContainer)
 	{
 		base.AddMessageToConversation (currentString, newMessageContainer, nPCMessageList, previousMessageContainer);
+		//SetMessageSprite(currentString,newMessageContainer,smallMessageSprite, mediumMessageSprite, largeMessageSprite, messageList);
 	}
 
 	protected override void FindNextConversationString (GameObject previousMessage)
@@ -47,6 +52,7 @@ public class NPCDialogueManager : DialogueManager
 	{
 		yield return new WaitForSeconds (4);
 		thisNPCMessageContainer = Instantiate (nPCMessageContainer, nPCConversationContainer.transform);
+		print ("Instantiated with height " + thisNPCMessageContainer.GetComponentInChildren<RectTransform>().rect.height);
 		AddMessageToConversation (currentAIString, thisNPCMessageContainer, nPCMessageList, previousMessage);
 		playerDialogueManager.IncrementYPositionOfCurrentMessages(thisNPCMessageContainer, playerDialogueManager.playerMessageList);
 		playerDialogueManager.BeginNextStringLoop(previousMessage);

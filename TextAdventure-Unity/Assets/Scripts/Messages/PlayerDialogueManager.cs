@@ -5,12 +5,16 @@ using UnityEngine.UI;
 
 public class PlayerDialogueManager : DialogueManager 
 {
+	public GameObject playerConversationContainer;
+	public List<GameObject> playerMessageList;
+	public Sprite smallMessageSprite;
+	public Sprite mediumMessageSprite;
+	public Sprite largeMessageSprite;
 	GameObject _sendButton;
 	PlayerInputController _playerInputController;
 	NPCDialogueManager _nPCDialogueManager;
 	string _resetTyping = " ";
-	public GameObject playerConversationContainer;
-	public List<GameObject> playerMessageList;
+
 
 	void Start () 
 	{
@@ -22,7 +26,7 @@ public class PlayerDialogueManager : DialogueManager
 		base.Initialise ();
 		_playerInputController = GameObject.FindObjectOfType<PlayerInputController>();
 		currentPlayerString = dialogueContainer.PlayerTextSequence[currentPlayerArrayIndex];
-		_nPCDialogueManager = GameObject.FindObjectOfType<NPCDialogueManager>();
+		_nPCDialogueManager = GetComponent<NPCDialogueManager>();
 		_sendButton = GameObject.FindGameObjectWithTag ("Send");
 		_sendButton.GetComponent<Button>().interactable = false;
 		playerMessageList = new List<GameObject>();

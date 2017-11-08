@@ -39,14 +39,40 @@ public class DialogueManager : MonoBehaviour
 
 	}
 
-	public void IncrementYPositionOfCurrentMessages(GameObject previousMessageContainer, List<GameObject> messageList)
+	public void IncrementYPositionOfCurrentMessages (GameObject newestMessageContainer, List<GameObject> messageList)
 	{
-		float messageHeight = previousMessageContainer.GetComponentInChildren<RectTransform>().rect.height;
+		float messageHeight = newestMessageContainer.GetComponentInChildren<RectTransform>().rect.height;
+		print ("Message Height: " + messageHeight);
 		MessageVisualBehaviorController messageVisualBehaviorController = GetComponent<MessageVisualBehaviorController>();
 		foreach (GameObject message in messageList)
 		{
 			messageVisualBehaviorController.IncreaseYTransform(message,messageHeight);
 			print ("Object moved: " + message);
+		}
+	}
+
+	protected virtual void SetMessageSprite (string newMessage, GameObject newMessageContainer, Sprite smallDefaultSprite, Sprite mediumDefaultSprite, Sprite largeDefaultSprite, List<GameObject> messageList)
+	{
+		int smallMessageLimit = 40;
+		int mediumMessageLimit = 90;
+		int largeMessageLimit = 250;
+		Image defaultImage = newMessageContainer.GetComponentInChildren<Image>();
+		print ("Current sprite length: " + newMessage.Length);
+
+		if (newMessage.Length <= smallMessageLimit)
+		{
+			defaultImage.sprite = smallDefaultSprite;
+			print ("Small Using " + smallDefaultSprite);
+		}
+		else if (newMessage.Length > smallMessageLimit && newMessage.Length <= mediumMessageLimit)
+		{
+			defaultImage.sprite = mediumDefaultSprite;
+			print ("Medium Using " + mediumDefaultSprite);
+		}
+		else if (newMessage.Length> mediumMessageLimit && newMessage.Length <= largeMessageLimit)
+		{
+			defaultImage.sprite = largeDefaultSprite;
+			print ("Large Using " + largeDefaultSprite);
 		}
 	}
 }
