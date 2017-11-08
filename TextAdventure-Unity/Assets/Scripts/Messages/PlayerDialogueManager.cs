@@ -24,23 +24,26 @@ public class PlayerDialogueManager : DialogueManager
 		currentPlayerString = dialogueContainer.PlayerTextSequence[currentPlayerArrayIndex];
 		_nPCDialogueManager = GameObject.FindObjectOfType<NPCDialogueManager>();
 		_sendButton = GameObject.FindGameObjectWithTag ("Send");
+		_sendButton.GetComponent<Button>().interactable = false;
 		playerMessageList = new List<GameObject>();
 		_playerInputController.SetCurrentMessage (currentPlayerString);
 	}
 
 	public void AllPlayerMessageCharactersTyped ()
 	{
+		_sendButton.GetComponent<Button>().interactable = true;
 		_sendButton.GetComponent<KeyFunctionality>().SetToGlow ();
+		print (_sendButton + " is glowing");
 	}
 
 	public void PlayerConfirmsSendMessage ()
 	{
-
 		GameObject thisPlayerMessageContainer = Instantiate (PlayerMessageContainer, playerConversationContainer.transform);
 		_nPCDialogueManager.IncrementYPositionOfCurrentMessages(thisPlayerMessageContainer, _nPCDialogueManager.nPCMessageList);
 		GameObject previousMessageContainer = _nPCDialogueManager.thisNPCMessageContainer;
 		AddMessageToConversation (currentPlayerString, thisPlayerMessageContainer ,playerMessageList,previousMessageContainer);
 		print ("NPC message is " + previousMessageContainer);
+		_sendButton.GetComponent<Button>().interactable = false;
 	}
 
 	protected override void AddMessageToConversation (string currentString, GameObject newMessageContainer,  List<GameObject> messageList, GameObject previousMessageContainer)

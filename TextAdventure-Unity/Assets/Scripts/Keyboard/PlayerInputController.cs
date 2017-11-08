@@ -48,6 +48,7 @@ public class PlayerInputController : MonoBehaviour
 	private void FindNextPlayerMessageCharacter ()
 	{
 		_playerMessageCharacterIndex += 1;
+		print ("_playerMessageCharacterIndex  is " + _playerMessageCharacterIndex + " and _currentPlayerMessageCharactersLength is " + _currentPlayerMessageCharactersLength);
 		if (_playerMessageCharacterIndex == _currentPlayerMessageCharactersLength)
 			{
 				_playerDialogueManager.AllPlayerMessageCharactersTyped ();
@@ -73,5 +74,10 @@ public class PlayerInputController : MonoBehaviour
 		_currentPlayerMessageCharactersLength = _currentPlayerMessageCharacters.Length;
 		char first = _currentPlayerMessageCharacters[0];
 		_buttonGlow.FindButtonToGlow (first);
+	}
+
+	public void SetCurrentIndexToNull()
+	{
+		_currentPlayerMessageCharacters[_playerMessageCharacterIndex] = ' ';
 	}
 }

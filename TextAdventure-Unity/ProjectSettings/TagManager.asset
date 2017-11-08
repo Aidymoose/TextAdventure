@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Key
   - Send
+  - Space
   layers:
   - Default
   - TransparentFX

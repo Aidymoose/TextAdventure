@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ButtonGlow : MonoBehaviour 
 {
-	private GameObject[] _allKeys;
+	GameObject[] _allKeys;
+	GameObject _space;
 
 	void Awake () 
 	{
@@ -14,17 +16,28 @@ public class ButtonGlow : MonoBehaviour
 	void Initialise ()
 	{
 		_allKeys = GameObject.FindGameObjectsWithTag("Key");
+		_space = GameObject.FindGameObjectWithTag("Space");
 	}
 
 	public void FindButtonToGlow (char currentGlowKey)
 	{
-		print ("finding key to glow");
-		foreach (GameObject key in _allKeys)
+		if (currentGlowKey == ' ')
 		{
-			char letter = key.GetComponent<KeyFunctionality>().GetKey ();
-			if(letter == currentGlowKey)
+			_space.GetComponent<KeyFunctionality>().SetToGlow();
+			PlayerInputController playerInputController = GameObject.FindObjectOfType<PlayerInputController>();
+			playerInputController.SetCurrentIndexToNull();
+		}
+		else
+		{
+			foreach (GameObject key in _allKeys)
 			{
+				string buttonID = key.GetComponentInChildren<Text>().text;
+				char letter = buttonID.ToCharArray()[0];
+				if(letter == currentGlowKey)
+				{
+				print("Button ID is " + buttonID);
 				key.GetComponent<KeyFunctionality>().SetToGlow ();
+				}
 			}
 		}
 	}

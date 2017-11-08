@@ -19,8 +19,11 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4537212649689452}
-  - component: {fileID: 114404660601924322}
   - component: {fileID: 114855310700524386}
+  - component: {fileID: 114972665070691864}
+  - component: {fileID: 114404660601924322}
+  - component: {fileID: 114525091588833426}
+  - component: {fileID: 114741167396220314}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -52,6 +55,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd8344d5d283aa34e983ab411439881e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nPCMessageContainer: {fileID: 1448309412809332, guid: 4f57a4705226d55478dec00adf6f99ba,
+    type: 2}
+  PlayerMessageContainer: {fileID: 1669485707896180, guid: 2215b492d22032941b8fff73a5219f88,
+    type: 2}
+--- !u!114 &114525091588833426
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1520272226433926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30fc6ca8f5ed17f469bb299bde550ff8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nPCMessageContainer: {fileID: 1448309412809332, guid: 4f57a4705226d55478dec00adf6f99ba,
+    type: 2}
+  PlayerMessageContainer: {fileID: 1669485707896180, guid: 2215b492d22032941b8fff73a5219f88,
+    type: 2}
+  nPCConversationContainer: {fileID: 0}
+  thisNPCMessageContainer: {fileID: 0}
+  nPCMessageList: []
+--- !u!114 &114741167396220314
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1520272226433926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0c90eb40340b6d4cbcfe136dc0f3bad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nPCMessageContainer: {fileID: 0}
+  PlayerMessageContainer: {fileID: 1669485707896180, guid: 2215b492d22032941b8fff73a5219f88,
+    type: 2}
+  playerConversationContainer: {fileID: 0}
+  playerMessageList: []
 --- !u!114 &114855310700524386
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -63,5 +104,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91940d08a64c42740ae8dcd2cc08445d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AITextSequence: []
-  PlayerTextSequence: []
+  AITextSequence:
+  - Wow this kind of looks real
+  - Still not case sensitive though?
+  - You should look into that
+  PlayerTextSequence:
+  - DEFINITELY
+  - NOPE
+  - IKNOW
+--- !u!114 &114972665070691864
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1520272226433926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eefba60aed7273d45947fce327277eac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
