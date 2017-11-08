@@ -10,7 +10,7 @@ public class PlayerDialogueManager : DialogueManager
 	NPCDialogueManager _nPCDialogueManager;
 	string _resetTyping = " ";
 	public GameObject playerConversationContainer;
-	List<GameObject> _playerMessageList;
+	public List<GameObject> playerMessageList;
 
 	void Start () 
 	{
@@ -24,7 +24,7 @@ public class PlayerDialogueManager : DialogueManager
 		currentPlayerString = dialogueContainer.PlayerTextSequence[currentPlayerArrayIndex];
 		_nPCDialogueManager = GameObject.FindObjectOfType<NPCDialogueManager>();
 		_sendButton = GameObject.FindGameObjectWithTag ("Send");
-		_playerMessageList = new List<GameObject>();
+		playerMessageList = new List<GameObject>();
 		_playerInputController.SetCurrentMessage (currentPlayerString);
 	}
 
@@ -35,23 +35,32 @@ public class PlayerDialogueManager : DialogueManager
 
 	public void PlayerConfirmsSendMessage ()
 	{
+
 		GameObject thisPlayerMessageContainer = Instantiate (PlayerMessageContainer, playerConversationContainer.transform);
-		AddMessageToConversation (currentPlayerString, thisPlayerMessageContainer ,_playerMessageList);
+		_nPCDialogueManager.IncrementYPositionOfCurrentMessages(thisPlayerMessageContainer, _nPCDialogueManager.nPCMessageList);
+		GameObject previousMessageContainer = _nPCDialogueManager.thisNPCMessageContainer;
+		AddMessageToConversation (currentPlayerString, thisPlayerMessageContainer ,playerMessageList,previousMessageContainer);
+		print ("NPC message is " + previousMessageContainer);
 	}
 
-	protected override void AddMessageToConversation (string currentString, GameObject thisMessageContainer,  List<GameObject> messageList)
+	protected override void AddMessageToConversation (string currentString, GameObject newMessageContainer,  List<GameObject> messageList, GameObject previousMessageContainer)
 	{
-		base.AddMessageToConversation (currentString, thisMessageContainer, _playerMessageList);
+		base.AddMessageToConversation (currentString, newMessageContainer, playerMessageList, previousMessageContainer);
 		_playerInputController.ResetTypeToScreen (_resetTyping);
 		_sendButton.GetComponent<KeyFunctionality>().EndGlow ();
-		FindNextConversationString ();
-		_nPCDialogueManager.UpdateAIText ();
+		_nPCDialogueManager.UpdateAIText (newMessageContainer);
 	}		
 
-	protected override void FindNextConversationString ()
+	protected override void FindNextConversationString (GameObject previousMessage)
 	{
 		currentPlayerArrayIndex +=1;
+		print (currentPlayerArrayIndex);
 		currentPlayerString = dialogueContainer.PlayerTextSequence[currentPlayerArrayIndex];
 		_playerInputController.SetCurrentMessage(currentPlayerString);
+	}
+
+	public void BeginNextStringLoop(GameObject previousMessage)
+	{
+		FindNextConversationString(previousMessage);
 	}
 }

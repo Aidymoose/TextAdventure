@@ -4791,6 +4791,17 @@ GameObject:
   m_PrefabParentObject: {fileID: 1520272226433926, guid: 50bc3741d383303459205a228690523b,
     type: 2}
   m_PrefabInternal: {fileID: 1866322323}
+--- !u!114 &1744373162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1744373161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eefba60aed7273d45947fce327277eac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1744373165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4807,6 +4818,7 @@ MonoBehaviour:
   PlayerMessageContainer: {fileID: 1669485707896180, guid: 2215b492d22032941b8fff73a5219f88,
     type: 2}
   nPCConversationContainer: {fileID: 1797979955}
+  nPCMessageList: []
 --- !u!114 &1744373166
 MonoBehaviour:
   m_ObjectHideFlags: 0
