@@ -9,9 +9,6 @@ public class NPCDialogueManager : DialogueManager
 	public GameObject nPCConversationContainer;
 	public GameObject thisNPCMessageContainer;
 	public List<GameObject> nPCMessageList = new List <GameObject>();
-	public Sprite smallMessageSprite;
-	public Sprite mediumMessageSprite;
-	public Sprite largeMessageSprite;
 	PlayerDialogueManager playerDialogueManager;
 	
 	void Start () 

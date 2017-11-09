@@ -5,11 +5,8 @@ using UnityEngine.UI;
 
 public class PlayerDialogueManager : DialogueManager 
 {
-	public GameObject playerConversationContainer;
+	public GameObject conversationContainer;
 	public List<GameObject> playerMessageList;
-	public Sprite smallMessageSprite;
-	public Sprite mediumMessageSprite;
-	public Sprite largeMessageSprite;
 	GameObject _sendButton;
 	PlayerInputController _playerInputController;
 	NPCDialogueManager _nPCDialogueManager;
@@ -42,7 +39,7 @@ public class PlayerDialogueManager : DialogueManager
 
 	public void PlayerConfirmsSendMessage ()
 	{
-		GameObject thisPlayerMessageContainer = Instantiate (PlayerMessageContainer, playerConversationContainer.transform);
+		GameObject thisPlayerMessageContainer = Instantiate (PlayerMessageContainer, conversationContainer.transform);
 		_nPCDialogueManager.IncrementYPositionOfCurrentMessages(thisPlayerMessageContainer, _nPCDialogueManager.nPCMessageList);
 		GameObject previousMessageContainer = _nPCDialogueManager.thisNPCMessageContainer;
 		AddMessageToConversation (currentPlayerString, thisPlayerMessageContainer ,playerMessageList,previousMessageContainer);

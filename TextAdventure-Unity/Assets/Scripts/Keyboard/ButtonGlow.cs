@@ -31,12 +31,12 @@ public class ButtonGlow : MonoBehaviour
 		{
 			foreach (GameObject key in _allKeys)
 			{
-				string buttonID = key.GetComponentInChildren<Text>().text;
-				char letter = buttonID.ToCharArray()[0];
-				if(letter == currentGlowKey)
+				string buttonID = key.GetComponentInChildren<Text> ().text;
+				char letter = buttonID.ToCharArray () [0];
+				if (letter == currentGlowKey)
 				{
-				print("Button ID is " + buttonID);
-				key.GetComponent<KeyFunctionality>().SetToGlow ();
+					print ("Button ID is " + buttonID);
+					key.GetComponent<KeyFunctionality> ().SetToGlow ();
 				}
 			}
 		}

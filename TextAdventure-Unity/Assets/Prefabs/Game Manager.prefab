@@ -75,7 +75,8 @@ MonoBehaviour:
   PlayerMessageContainer: {fileID: 1669485707896180, guid: 2215b492d22032941b8fff73a5219f88,
     type: 2}
   nPCConversationContainer: {fileID: 0}
-  thisNPCMessageContainer: {fileID: 0}
+  thisNPCMessageContainer: {fileID: 1448309412809332, guid: 4f57a4705226d55478dec00adf6f99ba,
+    type: 2}
   nPCMessageList: []
 --- !u!114 &114741167396220314
 MonoBehaviour:
@@ -88,10 +89,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0c90eb40340b6d4cbcfe136dc0f3bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nPCMessageContainer: {fileID: 0}
+  nPCMessageContainer: {fileID: 1448309412809332, guid: 4f57a4705226d55478dec00adf6f99ba,
+    type: 2}
   PlayerMessageContainer: {fileID: 1669485707896180, guid: 2215b492d22032941b8fff73a5219f88,
     type: 2}
-  playerConversationContainer: {fileID: 0}
+  conversationContainer: {fileID: 0}
   playerMessageList: []
 --- !u!114 &114855310700524386
 MonoBehaviour:
@@ -105,13 +107,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AITextSequence:
-  - Wow this kind of looks real
-  - Still not case sensitive though?
-  - You should look into that
+  - Just a quick one
+  - Are you busy?
+  - Ah shit
   PlayerTextSequence:
-  - DEFINITELY
-  - NOPE
-  - IKNOW
+  - FIRE AWAY
+  - NOT YET
+  - ONE DAY
 --- !u!114 &114972665070691864
 MonoBehaviour:
   m_ObjectHideFlags: 1
