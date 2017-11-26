@@ -7,12 +7,11 @@ using UnityEngine.EventSystems;
 
 public class PlayerInputController : MonoBehaviour 
 {
-
 	char[] _currentPlayerMessageCharacters;
 	int _playerMessageCharacterIndex = 0;
 	int _currentPlayerMessageCharactersLength;
 	string _playerCurrentMessage;
-	ButtonGlow _buttonGlow;
+	KeyboardController _keyboardController;
 	PlayerDialogueManager _playerDialogueManager;
 	Text _text;
 
@@ -24,17 +23,20 @@ public class PlayerInputController : MonoBehaviour
 	void Initialise ()
 	{
 		_playerDialogueManager = GameObject.FindObjectOfType<PlayerDialogueManager>();
-		_buttonGlow = GameObject.FindObjectOfType<ButtonGlow>();
+		_keyboardController = GameObject.FindObjectOfType<KeyboardController>();
 		_text = this.GetComponentInChildren<Text>();
 	}
 
-	public void PlayerHasPressedKey (string keyvalue)
+	public void PlayerHasPressedKey (string keyValue)
 	{
-		char key = keyvalue.ToCharArray()[0];
-		GameObject button = EventSystem.current.currentSelectedGameObject;
-		if (key == _currentPlayerMessageCharacters[_playerMessageCharacterIndex])
+		char currentPlayerMessageCharacter = _currentPlayerMessageCharacters[_playerMessageCharacterIndex];
+		string keyValueCase = _keyboardController.SetOnClickStringCase(keyValue,currentPlayerMessageCharacter);
+		char keyPressed = keyValueCase.ToCharArray()[0];
+		print ("key pressed is " + keyPressed);
+		if (keyPressed == currentPlayerMessageCharacter)
 		{
 			UpdateCurrentPlayerMessageText ();
+			GameObject button = EventSystem.current.currentSelectedGameObject;
 			button.GetComponent<KeyFunctionality>().EndGlow();
 			FindNextPlayerMessageCharacter ();
 		}
@@ -56,8 +58,8 @@ public class PlayerInputController : MonoBehaviour
 		else
 		{
 			char next = _currentPlayerMessageCharacters[_playerMessageCharacterIndex];
-
-			_buttonGlow.FindButtonToGlow(next);
+			print ("Next character is " + next);
+			_keyboardController.CheckCharacterCase (next);
 		}
 	}
 
@@ -73,10 +75,10 @@ public class PlayerInputController : MonoBehaviour
 		_currentPlayerMessageCharacters = _playerCurrentMessage.ToCharArray ();
 		_currentPlayerMessageCharactersLength = _currentPlayerMessageCharacters.Length;
 		char first = _currentPlayerMessageCharacters[0];
-		_buttonGlow.FindButtonToGlow (first);
+		_keyboardController.CheckCharacterCase (first);
 	}
 
-	public void SetCurrentIndexToNull()
+	public void SetCurrentIndexToNull ()
 	{
 		_currentPlayerMessageCharacters[_playerMessageCharacterIndex] = ' ';
 	}
