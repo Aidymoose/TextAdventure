@@ -38,6 +38,7 @@ public class KeyboardController : MonoBehaviour
 				{
 					print ("Button ID is " + buttonID);
 					key.GetComponent<KeyFunctionality> ().SetToGlow ();
+					return;
 				}
 			}
 		}
